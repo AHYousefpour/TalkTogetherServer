@@ -35,13 +35,6 @@ string ManageClients::getIPAddressOfClient(Client client)
     return ipAddress;
 }
 
-string ManageClients::getMessageOfClient(string ipAddress)
-{
-    string msg = _clients[ipAddress].msg;
-
-    return msg;
-}
-
 Client* ManageClients::getClientWithIndex(const int index)
 {
     Client* client = nullptr;

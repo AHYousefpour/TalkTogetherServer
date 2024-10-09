@@ -19,7 +19,6 @@ public:
     static void removeClient(struct Client client);
     static struct Client getClient(string ipAddress);
     static string getIPAddressOfClient(struct Client client);
-    static string getMessageOfClient(string ipAddress);
     static struct Client* getClientWithIndex(const int index);
     static nfds_t getCurrentSizeOfClients();
 
