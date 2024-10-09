@@ -2,30 +2,26 @@
 #include "client.h" 
 
 
-map<string, Client> ManageClients::_clients = {};
+map<int, Client> ManageClients::_clients = {};
 nfds_t ManageClients::_currentSizeOfClients = 0;
 
 void ManageClients::addClient(Client client)
 {
-    string ipAddress = getIPAddressOfClient(client);
-
-    _clients.insert(pair<string, Client>(ipAddress, client));
+    _clients.insert(pair<int, Client>(client.socket, client));
     _currentSizeOfClients++;
 }
 
 void ManageClients::removeClient(Client client)
-{
-    string ipAddress = getIPAddressOfClient(client);
-    
+{    
     //free(_clients[ipAddress].msg);
 
-    _clients.erase(ipAddress);
+    _clients.erase(client.socket);
     _currentSizeOfClients--;
 }
 
-Client ManageClients::getClient(string ipAddress)
+Client ManageClients::getClient(const int socket)
 {
-    return _clients[ipAddress];
+    return _clients[socket];
 }
 
 string ManageClients::getIPAddressOfClient(Client client)
@@ -38,7 +34,7 @@ string ManageClients::getIPAddressOfClient(Client client)
 Client* ManageClients::getClientWithIndex(const int index)
 {
     Client* client = nullptr;
-    map<string, Client>::iterator item;
+    map<int, Client>::iterator item;
     int i = 0;
 
     for(item = _clients.begin(); item != _clients.end(); item++)

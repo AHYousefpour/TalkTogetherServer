@@ -17,13 +17,13 @@ public:
 
     static void addClient(struct Client client);
     static void removeClient(struct Client client);
-    static struct Client getClient(string ipAddress);
+    static struct Client getClient(const int socket);
     static string getIPAddressOfClient(struct Client client);
     static struct Client* getClientWithIndex(const int index);
     static nfds_t getCurrentSizeOfClients();
 
 private:
-    static map<string, struct Client> _clients;
+    static map<int, struct Client> _clients;
     static nfds_t _currentSizeOfClients;
 };
 
