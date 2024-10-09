@@ -19,9 +19,9 @@ void ManageClients::removeClient(Client client)
     _currentSizeOfClients--;
 }
 
-Client ManageClients::getClient(const int socket)
+Client* ManageClients::getClient(const int socket)
 {
-    return _clients[socket];
+    return &_clients[socket];
 }
 
 string ManageClients::getIPAddressOfClient(Client client)
