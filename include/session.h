@@ -16,8 +16,8 @@ private:
     void polling();
     bool isNewConnection(const int index);
     void addClientToPollRequests(const int clientSocket);
-    void readAllMessages();
-    void sendMessage(Client client);
+    void readMessage(Client* client);
+    void handleMessage(Client client);
 
     int _serverSocket;
     static pollfd _pollRequests[MAXCLIENT];

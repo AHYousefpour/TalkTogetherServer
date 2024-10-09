@@ -44,7 +44,9 @@ void Session::handleIncomming()
             }
             else
             {
-                readAllMessages();
+                Client* client = ManageClients::getClient(_pollRequests[index].fd);
+                readMessage(client);
+                handleMessage(*client);
             }
         }
     }
@@ -80,25 +82,12 @@ void Session::addClientToPollRequests(const int clientSocket)
     }
 }
 
-void Session::readAllMessages()
+void Session::readMessage(Client* client)
 {
-    int index = 0;
-    while (true)
-    {
-        Client* client = ManageClients::getClientWithIndex(index);
-
-        if(client == nullptr)
-            break;
-
-        RecvMessage::recvMessageFromClient(client);
-
-        sendMessage(*client);
-
-        index++;
-    }
+    RecvMessage::recvMessageFromClient(client);
 }
 
-void Session::sendMessage(Client client)
+void Session::handleMessage(Client client)
 {
     MessageFactory* msgFactory = new MessageFactory(client);
 
