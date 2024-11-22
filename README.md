@@ -4,4 +4,4 @@ A maximum of 1024 clients can connect to this server at the same time, so that t
 The poll method is used in this code and it can handle all clients simultaneously.
 This code is just an aspect of showing my skills, I used the concepts of solid, clean code, etc. in this code.
 
-# This project can only compile and run on linux.
+# This project can only be compiled and run on linux.
